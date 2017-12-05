@@ -104,7 +104,6 @@ def draw_parallel_lines(n, point, length, window):
         line.attach_to(window)
         window.render(.2)
 
-    window.close_on_mouse_click()
 
     # ------------------------------------------------------------------
     # TODO: 2. Implement and test this function.
