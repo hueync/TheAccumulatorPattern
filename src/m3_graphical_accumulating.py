@@ -185,7 +185,6 @@ def draw_lines(n, point, window):
     ####################################################################
     # ------------------------------------------------------------------
     y = (point.y - 100)
-    pointY = y
     r = 200/(n-1)
     for k in range(n):
         startpoint = rg.Point(point.x,point.y)
