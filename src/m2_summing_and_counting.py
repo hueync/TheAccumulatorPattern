@@ -117,7 +117,7 @@ def sum_more_cosines(m, n):
 def run_test_count_sines_from():
     """ Tests the   count_sines_from   function. """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement this TEST function.
+    # DONE: 4. Implement this TEST function.
     #   It TESTS the  count_sines_from  function defined below.
     #   Include at least **   6   ** tests (we wrote one for you).
     #              ** Yes, 6 (six) tests. **
@@ -133,6 +133,36 @@ def run_test_count_sines_from():
     expected = 5
     answer = count_sines_from(3, 9)
     print('Test 1 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 2:
+    expected = 8
+    answer = count_sines_from(2, 12)
+    print('Test 2 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 3:
+    expected = 19
+    answer = count_sines_from(5, 33)
+    print('Test 3 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 4:
+    expected = 7
+    answer = count_sines_from(2, 11)
+    print('Test 4 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 5:
+    expected = 8
+    answer = count_sines_from(77, 90)
+    print('Test 5 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 6:
+    expected = 235
+    answer = count_sines_from(69, 420)
+    print('Test 6 expected:', expected)
     print('       actual:  ', answer)
 
     # ------------------------------------------------------------------
@@ -161,7 +191,7 @@ def count_sines_from(m, n):
       -- count_sines_from(9, 9)  returns  1
     """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPORTANT: As in previous problems in this session,
@@ -173,9 +203,10 @@ def count_sines_from(m, n):
     for k in range(n - m + 1):
         calc = math.sin(m + k)
         print("sine(", m+k,") is about ", calc)
-        
-    return count
+        if calc < .5:
+            count = count + 1
     print("count_sines_from(" , m , ", " , n ,") returns " , count)
+    return count
 
 
 
@@ -230,6 +261,15 @@ def count_sines_vs_cosines(m):
       -- count_sines_vs_cosines(1) returns 1
       -- Also:  count_sines_vs_cosines(101) returns 100 (trust me!)
     """
+    count = 0
+    for k in range((m )*2 + 1):
+        sin = math.sin(-m + k)
+        cos = math.cos(-m + k)
+        print('sine(', k - m ,") is about ", sin, ' and cosine(', k ,") is about ", cos)
+        if sin > cos:
+            count = count + 1
+        print("count_sines_vs_cosines(", m , ") returns ", count)
+    return count
     # ------------------------------------------------------------------
     # TODO: 7. Implement and test this function.
     #   Note that you should write its TEST function first (above).
