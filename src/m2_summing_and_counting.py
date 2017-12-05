@@ -281,7 +281,7 @@ def count_sines_vs_cosines(m):
       -- count_sines_vs_cosines(5) returns 6
       -- count_sines_vs_cosines(3) returns 4
       -- count_sines_vs_cosines(0) returns 0
-      -- count_sines_vs_cosines(1) returns 1
+      -- count_sines_vs_cosines(1) returns 2
       -- Also:  count_sines_vs_cosines(101) returns 100 (trust me!)
     """
     count = 0
