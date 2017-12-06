@@ -10,7 +10,7 @@ before you can implement a solution to the problem in Python.
   
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
          their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -97,8 +97,20 @@ def draw_squares_from_circle(n, circle, window):
       :type circle: rg.Circle
       :type window: rg.RoseWindow
     """
+    point = rg.Point(circle.radius,circle.radius)
+    circle2 = rg.Circle(circle.center, circle.radius)
+    circle.attach_to(window)
+    square1 = rg.Square(circle.center,circle.radius*2)
+    square1.attach_to(window)
+    window.render(.2)
+    for k in range(n-1):
+        circle2.move_by((circle2.radius),(circle2.radius) )
+        square = rg.Square(circle2.center,circle2.radius * 2)
+        square.attach_to(window)
+        window.render(.2)
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -120,7 +132,15 @@ def run_test_draw_circles_from_rectangle():
     print('Testing the  draw_circles_from_rectangle  function:')
     print('  See the graphics windows that pop up.')
     print('--------------------------------------------------')
+    window = rg.RoseWindow(720,500)
+    point1 = rg.Point(400, 250)
+    point2 = rg.Point(440, 325)
+    rectangle = rg.Rectangle(point1, point2)
+    rectangle.fill_color = 'green'
+    rectangle.attach_to(window)
+    draw_circles_from_rectangle(4, 5, rectangle, window)
 
+    window.close_on_mouse_click()
     # ------------------------------------------------------------------
     # TODO: 3. Implement this TEST function.
     #   It TESTS the  draw_circles_from_rectangle  function
@@ -175,6 +195,9 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window: rg.RoseWindow
     """
+
+
+
     # ------------------------------------------------------------------
     # TODO: 4. Implement and test this function.
     #          Tests have been written for you (above).
