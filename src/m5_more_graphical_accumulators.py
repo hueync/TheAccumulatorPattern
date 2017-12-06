@@ -195,6 +195,17 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window: rg.RoseWindow
     """
+    radius1 = (rectangle.corner_2.y - rectangle.corner_1.y)/2
+    x_center_of_Rectangle = (rectangle.corner_1.x + rectangle.corner_2.x)/2 - radius1*1.5
+    y_center_of_Rectangle = (rectangle.corner_1.y + rectangle.corner_2.y)/2
+    center = rg.Point(x_center_of_Rectangle, y_center_of_Rectangle)
+    for k in range(m):
+        moving_center = rg.Point(center.x - 2*radius1*(k),center.y)
+        circle = rg.Circle(moving_center, radius1)
+        circle.fill_color = rectangle.fill_color
+        circle.attach_to(window)
+        window.render(.2)
+        
 
 
 
