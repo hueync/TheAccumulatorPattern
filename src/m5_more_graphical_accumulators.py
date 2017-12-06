@@ -330,9 +330,18 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     center2 = rectangle2.get_center()
     width1 = rectangle1.get_width()
     height1 = rectangle1.get_height()
-
+    count = 0
     for k in range(n):
+
         line = rg.Line(rg.Point(center1.x - (width1/2)* k, center1.y + (height1/2)*k ),rg.Point( center2.x - (width1/2)*k, center2.y + (height1/2)* k))
+        line.thickness = 5
+        if count % 2 == 0:
+            line.color = rectangle1.outline_color
+        else:
+            line.color = rectangle2.outline_color
+
+
+        count = count + 1
         line.attach_to(window)
 
 
@@ -348,7 +357,7 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
 
 
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
