@@ -326,17 +326,26 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
       :type n: int
       :type window: rg.RoseWindow
       """
-    center1 = rg.Point((rectangle1.corner_1.x + rectangle1.corner_2.x)/2, (rectangle1.corner_1.y +rectangle1.corner_2.y)/2)
-    center2 = rg.Point((rectangle2.corner_1.x + rectangle2.corner_2.x)/2, (rectangle2.corner_1.y + rectangle2.corner_2.y)/2)
-    line = rg.Line(center1, center2)
-    line.attach_to(window)
+    center1 = rectangle1.get_center()
+    center2 = rectangle2.get_center()
+    width1 = rectangle1.get_width()
+    height1 = rectangle1.get_height()
+
+    for k in range(n):
+        line = rg.Line(rg.Point(center1.x - (width1/2)* k, center1.y + (height1/2)*k ),rg.Point( center2.x - (width1/2)*k, center2.y + (height1/2)* k))
+        line.attach_to(window)
+
+
     rectangle2.attach_to(window)
     rectangle1.attach_to(window)
-    move_center1 = rg.Point(center1.x - (rectangle1.corner_2.x - rectangle1.corner_1.x)/2, center1.y + (rectangle1.corner_2.y - rectangle1.corner_1.y)/2)
-    move_center2 = rg.Point(center2.x - (rectangle1.corner_2.x - rectangle1.corner_1.x)/2, center2.y + (rectangle1.corner_2.y - rectangle1.corner_1.y)/2)
-    new_line = rg.Line(move_center1, move_center2)
-    new_line.attach_to(window)
+    rectangle1
+
+
+
+
+
     window.render(.2)
+
 
     # ------------------------------------------------------------------
     # TODO: 5. Implement and test this function.
