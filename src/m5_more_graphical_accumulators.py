@@ -326,30 +326,18 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
       :type n: int
       :type window: rg.RoseWindow
       """
-    R1_color = rectangle1.outline_color
-    R2_color = rectangle2.outline_color
-    center_Rectangle1 = rg.Point((rectangle1.corner_1.x + rectangle1.corner_2.x)/2,(rectangle1.corner_1.y + rectangle1.corner_2.y)/2)
-    center_Rectangle2 = rg.Point((rectangle2.corner_1.x + rectangle2.corner_2.x)/2,(rectangle2.corner_1.y + rectangle2.corner_2.y)/2)
-    line = rg.Line(center_Rectangle1, center_Rectangle2)
+    center1 = rg.Point((rectangle1.corner_1.x + rectangle1.corner_2.x)/2, (rectangle1.corner_1.y +rectangle1.corner_2.y)/2)
+    center2 = rg.Point((rectangle2.corner_1.x + rectangle2.corner_2.x)/2, (rectangle2.corner_1.y + rectangle2.corner_2.y)/2)
+    line = rg.Line(center1, center2)
     line.attach_to(window)
-    rectangle1.attach_to(window)
     rectangle2.attach_to(window)
-    line.color = R1_color
+    rectangle1.attach_to(window)
+    move_center1 = rg.Point(center1.x - (rectangle1.corner_2.x - rectangle1.corner_1.x)/2, center1.y + (rectangle1.corner_2.y - rectangle1.corner_1.y)/2)
+    move_center2 = rg.Point(center2.x - (rectangle1.corner_2.x - rectangle1.corner_1.x)/2, center2.y + (rectangle1.corner_2.y - rectangle1.corner_1.y)/2)
+    new_line = rg.Line(move_center1, move_center2)
+    new_line.attach_to(window)
     window.render(.2)
-    count = 1
-    for k in range(n):
-        count = count + 1
-        moving_point1 = rg.Point(center_Rectangle1.x - (rectangle1.corner_2.x - rectangle1.corner_1.x)*(k + 1),
-                                 center_Rectangle1.y + (rectangle1.corner_2.y - rectangle1.corner_1.y)* (k+1))
-        moving_point2 = rg.Point(center_Rectangle2.x - (rectangle2.corner_2.x - rectangle2.corner_1.x)*(k + 1),
-                                 center_Rectangle2.y + (rectangle2.corner_2.y - rectangle2.corner_1.y)* (k + 1))
-        line = rg.Line(moving_point1,moving_point2)
-        if count % 2 == 0:
-            line.color = R2_color
-        else:
-            line.color = R1_color
-        line.attach_to(window)
-        window.render(.2)
+
     # ------------------------------------------------------------------
     # TODO: 5. Implement and test this function.
     #          Tests have been written for you (above).
