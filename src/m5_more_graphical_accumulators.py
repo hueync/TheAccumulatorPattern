@@ -162,7 +162,7 @@ def run_test_draw_circles_from_rectangle():
 
     window2.close_on_mouse_click()
     # ------------------------------------------------------------------
-    # TODO: 3. Implement this TEST function.
+    # DONE: 3. Implement this TEST function.
     #   It TESTS the  draw_circles_from_rectangle  function
     #   defined below.  Include at least **   3   ** tests, of which
     #      ***  at least TWO tests are on ONE window and
@@ -235,7 +235,7 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
 
 
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -326,6 +326,30 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
       :type n: int
       :type window: rg.RoseWindow
       """
+    R1_color = rectangle1.outline_color
+    R2_color = rectangle2.outline_color
+    center_Rectangle1 = rg.Point((rectangle1.corner_1.x + rectangle1.corner_2.x)/2,(rectangle1.corner_1.y + rectangle1.corner_2.y)/2)
+    center_Rectangle2 = rg.Point((rectangle2.corner_1.x + rectangle2.corner_2.x)/2,(rectangle2.corner_1.y + rectangle2.corner_2.y)/2)
+    line = rg.Line(center_Rectangle1, center_Rectangle2)
+    line.attach_to(window)
+    rectangle1.attach_to(window)
+    rectangle2.attach_to(window)
+    line.color = R1_color
+    window.render(.2)
+    count = 1
+    for k in range(n):
+        count = count + 1
+        moving_point1 = rg.Point(center_Rectangle1.x - (rectangle1.corner_2.x - rectangle1.corner_1.x)*(k + 1),
+                                 center_Rectangle1.y + (rectangle1.corner_2.y - rectangle1.corner_1.y)* (k+1))
+        moving_point2 = rg.Point(center_Rectangle2.x - (rectangle2.corner_2.x - rectangle2.corner_1.x)*(k + 1),
+                                 center_Rectangle2.y + (rectangle2.corner_2.y - rectangle2.corner_1.y)* (k + 1))
+        line = rg.Line(moving_point1,moving_point2)
+        if count % 2 == 0:
+            line.color = R2_color
+        else:
+            line.color = R1_color
+        line.attach_to(window)
+        window.render(.2)
     # ------------------------------------------------------------------
     # TODO: 5. Implement and test this function.
     #          Tests have been written for you (above).
