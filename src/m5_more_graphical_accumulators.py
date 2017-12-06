@@ -150,6 +150,17 @@ def run_test_draw_circles_from_rectangle():
     draw_circles_from_rectangle(6, 2, rectangle2, window)
 
     window.close_on_mouse_click()
+
+    window2 = rg.RoseWindow(800, 600)
+    point1 = rg.Point(500,400)
+    point2 = rg.Point(700, 550)
+    rectangle3 = rg.Rectangle(point1, point2)
+    rectangle3.fill_color = 'blue'
+    rectangle3.outline_color = 'orange1'
+    rectangle3.attach_to(window2)
+    draw_circles_from_rectangle(8, 10, rectangle3, window2)
+
+    window2.close_on_mouse_click()
     # ------------------------------------------------------------------
     # TODO: 3. Implement this TEST function.
     #   It TESTS the  draw_circles_from_rectangle  function
